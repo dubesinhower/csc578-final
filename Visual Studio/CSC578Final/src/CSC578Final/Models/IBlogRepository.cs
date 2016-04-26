@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CSC578Final.Models
+﻿namespace CSC578Final.Models
 {
-    using CSC578Final.Models;
+    using System.Linq;
 
     public interface IBlogRepository
     {

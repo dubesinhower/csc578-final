@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CSC578Final.Models
+﻿namespace CSC578Final.Models
 {
+    using System;
+
     public class Comment
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Body { get; set; }
-        public int Author { get; set; }
+        public string AuthorId { get; set; }
         public DateTime Created { get; set; }
         public DateTime Edited { get; set; }
-        public int PostId { get; set; }
+        public string PostId { get; set; }
     }
 }

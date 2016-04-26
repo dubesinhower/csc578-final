@@ -14,7 +14,7 @@ using CSC578Final.Services;
 
 namespace CSC578Final
 {
-    using CSC578Final.Data;
+    using CSC578Final.Models;
 
     public class Startup
     {
@@ -43,11 +43,10 @@ namespace CSC578Final
             // Add framework services.
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
-                .AddDbContext<BlogContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                .AddDbContext<BlogContext>(options => options.UseSqlServer(Configuration["Data:BlogContextConnectio"]));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<BlogUser, IdentityRole>()
+                .AddEntityFrameworkStores<BlogContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
@@ -79,7 +78,7 @@ namespace CSC578Final
                     using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
                         .CreateScope())
                     {
-                        serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
+                        serviceScope.ServiceProvider.GetService<BlogContext>()
                              .Database.Migrate();
                     }
                 }
@@ -100,6 +99,8 @@ namespace CSC578Final
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            SampleData.Initialize(app.ApplicationServices);
         }
 
         // Entry point for the application.
