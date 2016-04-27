@@ -4,11 +4,11 @@
 
     public class Comment
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Body { get; set; }
-        public string AuthorId { get; set; }
+        public int AuthorId { get; set; }
         public DateTime Created { get; set; }
         public DateTime Edited { get; set; }
-        public string PostId { get; set; }
+        public int PostId { get; set; }
     }
 }

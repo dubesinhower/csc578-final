@@ -10,16 +10,16 @@ namespace CSC578Final.Controllers
 
     public class HomeController : Controller
     {
-        private BlogContext context;
+        private IBlogRepository repository;
 
-        public HomeController(BlogContext context)
+        public HomeController(IBlogRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
         public IActionResult Index()
         {
-            var posts = this.context.Posts.OrderBy(t => t.Created).ToList();
+            var posts = this.repository.GetPosts();
             return View(posts);
         }
 

@@ -19,17 +19,16 @@
         {
             context = serviceProvider.GetService<BlogContext>();
 
-            CreateSampleRoles();
-            CreateSampleUsers();
+            await CreateSampleRoles();
+            await CreateSampleUsers();
             await AssignRoles(serviceProvider);
             CreateSamplePosts();
         }
 
 
 
-        private static void CreateSampleRoles()
+        private static async Task CreateSampleRoles()
         {
-           
 
             foreach (string role in Roles)
             {
@@ -37,14 +36,14 @@
 
                 if (!context.Roles.Any(r => r.Name == role))
                 {
-                    roleStore.CreateAsync(new IdentityRole(role));
+                    await roleStore.CreateAsync(new IdentityRole(role));
                 }
             }
 
-            context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
-        private static void CreateSampleUsers()
+        private static async Task CreateSampleUsers()
         {
             if (!context.Users.Any(u => u.UserName == User.UserName))
             {
@@ -53,10 +52,10 @@
                 User.PasswordHash = hashed;
 
                 var userStore = new UserStore<BlogUser>(context);
-                var result = userStore.CreateAsync(User);
+                await userStore.CreateAsync(User);
             }
 
-            context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
         private static async Task<IdentityResult> AssignRoles(IServiceProvider serviceProvider)

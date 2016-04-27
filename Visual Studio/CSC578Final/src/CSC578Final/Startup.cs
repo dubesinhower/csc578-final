@@ -43,7 +43,7 @@ namespace CSC578Final
             // Add framework services.
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<BlogContext>(options => options.UseSqlServer(Configuration["Data:BlogContextConnectio"]));
+                .AddDbContext<BlogContext>(options => options.UseSqlServer(Configuration["Data:BlogContextConnection"]));
 
             services.AddIdentity<BlogUser, IdentityRole>()
                 .AddEntityFrameworkStores<BlogContext>()
@@ -54,6 +54,7 @@ namespace CSC578Final
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

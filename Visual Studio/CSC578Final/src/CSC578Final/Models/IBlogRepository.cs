@@ -4,7 +4,7 @@
 
     public interface IBlogRepository
     {
-        IQueryable<Post> GetPosts();
+        IQueryable<PostViewModel> GetPosts();
         IQueryable<Comment> GetCommentsByTopic(int postId);
     }
 }
