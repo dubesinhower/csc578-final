@@ -1,14 +1,7 @@
-﻿@model IEnumerable<CSC578Final.Models.PostViewModel>
-
-@{
-    ViewData["Title"] = "Home Page";
+﻿@{
+    ViewData["Title"] = "Home";
 }
 
-@foreach (var post in Model)
-{
-    <div>
-        <h3>@post.Title</h3>
-        <h4 class="text-muted">By @post.AuthorName</h4>
-        <p>@post.Body</p>
-    </div>
-}
+<h1>Welcome to SweetBlog!</h1>
+<p>There are many cool posts here, so take a look around!</p>
+<a asp-controller="Home" asp-action="Posts" class="btn btn-lg btn-success">View My Posts</a>

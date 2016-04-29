@@ -12,7 +12,7 @@
     {
         private static BlogContext context;
         private static readonly string[] Roles = { "Administrator", "User" };
-       private static readonly BlogUser User = new BlogUser { UserName = "JohnCena" };
+       private static readonly BlogUser User = new BlogUser { UserName = "JohnCena", SecurityStamp = Guid.NewGuid().ToString() };
         
 
         public static async void Initialize(IServiceProvider serviceProvider)
@@ -24,8 +24,6 @@
             await AssignRoles(serviceProvider);
             CreateSamplePosts();
         }
-
-
 
         private static async Task CreateSampleRoles()
         {

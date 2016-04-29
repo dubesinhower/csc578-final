@@ -8,6 +8,8 @@ namespace CSC578Final.Controllers
 {
     using CSC578Final.Models;
 
+    using Microsoft.AspNet.Authorization;
+
     public class HomeController : Controller
     {
         private IBlogRepository repository;
@@ -18,6 +20,12 @@ namespace CSC578Final.Controllers
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Posts()
         {
             var posts = this.repository.GetPosts();
             return View(posts);

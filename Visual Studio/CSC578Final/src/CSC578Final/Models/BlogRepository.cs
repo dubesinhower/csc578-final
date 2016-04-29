@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using CSC578Final.ViewModels;
+
     using Microsoft.AspNet.Http;
     using Microsoft.AspNet.Mvc;
 

@@ -1,4 +1,4 @@
-﻿namespace CSC578Final.Models
+﻿namespace CSC578Final.ViewModels
 {
     using System;
     using System.Collections.Generic;

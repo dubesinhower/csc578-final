@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace CSC578Final
 {
     using CSC578Final.Models;
+    using CSC578Final.ViewModels;
 
     public static class QueryableExtensions
     {
