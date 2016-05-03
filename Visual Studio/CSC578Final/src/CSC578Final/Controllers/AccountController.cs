@@ -15,7 +15,7 @@ namespace CSC578Final.Controllers
 
     public class AccountController : Controller
     {
-        private SignInManager<BlogUser> signInManager;
+        private readonly SignInManager<BlogUser> signInManager;
 
         public AccountController(SignInManager<BlogUser> signInManager)
         {
@@ -27,7 +27,7 @@ namespace CSC578Final.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Posts", "Home");
+                return RedirectToAction("Index", "Blog");
             }
 
             return View();
@@ -43,7 +43,7 @@ namespace CSC578Final.Controllers
 
                 if (signInResult.Succeeded)
                 {
-                    if (string.IsNullOrWhiteSpace(returnUrl)) return this.RedirectToAction("Posts", "Home");
+                    if (string.IsNullOrWhiteSpace(returnUrl)) return this.RedirectToAction("Index", "Blog");
                     return this.Redirect(returnUrl);
                 }
                 else
@@ -53,6 +53,18 @@ namespace CSC578Final.Controllers
             }
 
             return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await signInManager.SignOutAsync();
+                return RedirectToAction("Index", "Blog");
+            }
+
+            return RedirectToAction("Index", "Blog");
         }
     }
 }

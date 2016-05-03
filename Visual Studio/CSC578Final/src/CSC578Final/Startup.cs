@@ -14,7 +14,11 @@ using CSC578Final.Services;
 
 namespace CSC578Final
 {
+    using AutoMapper;
+
+    using CSC578Final.Controllers;
     using CSC578Final.Models;
+    using CSC578Final.ViewModels;
 
     public class Startup
     {
@@ -92,13 +96,21 @@ namespace CSC578Final
 
             app.UseIdentity();
 
+            Mapper.Initialize(
+                config =>
+                    {
+                        config.CreateMap<Post, PostViewModel>().ReverseMap();
+                        config.CreateMap<Post, CreatePostViewModel>().ReverseMap();
+                        config.CreateMap<Post, EditPostViewModel>().ReverseMap();
+                    });
+
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Blog}/{action=Index}/{id?}");
             });
 
             SampleData.Initialize(app.ApplicationServices);
