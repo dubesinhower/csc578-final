@@ -15,6 +15,7 @@ namespace CSC578Final.Controllers
     using Microsoft.AspNet.Authorization;
     using System.Security.Claims;
 
+    
     public class BlogController : Controller
     {
         private readonly IBlogRepository repository;
@@ -45,6 +46,7 @@ namespace CSC578Final.Controllers
         }
 
         [Authorize]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public IActionResult Edit(EditPostViewModel vm)
         {
@@ -67,6 +69,7 @@ namespace CSC578Final.Controllers
         }
 
         [Authorize]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public IActionResult Create(CreatePostViewModel vm)
         {
